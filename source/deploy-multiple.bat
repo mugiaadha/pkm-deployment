@@ -32,7 +32,7 @@ echo === DEPLOYING: !new_name! from !old_name! ===
 
 :: === COPY FOLDER ===
 echo Copying folder...
-xcopy "!old_name!" "../!new_name!" /E /I /H /Y >nul
+xcopy "!old_name!" "../result/!new_name!" /E /I /H /Y >nul
 
 :: === FILE REPLACEMENT ===
 for %%f in (
@@ -42,7 +42,7 @@ for %%f in (
   "wsv2\pasien.php"
   "report\loadetiket.php"
   ) do (
-  set "filepath=../!new_name!\clenic\%%~f"
+  set "filepath=../result/!new_name!\clenic\%%~f"
   call :replacefile "!filepath!" "!old_db!" "!new_db!" "!old_code!" "!new_code!"
 )
 
