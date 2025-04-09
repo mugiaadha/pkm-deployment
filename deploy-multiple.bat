@@ -40,6 +40,20 @@ for /f "usebackq delims=" %%f in ("file-list.txt") do (
   call :replacefile "!filepath!" "!old_db!" "!new_db!" "!old_code!" "!new_code!"
 )
 
+:: === CEK DENGAN CURL ===
+echo.
+echo Checking branch [!new_code!]...
+curl -s https://emr.clenicapp.com/api/master-data/cabang/!new_code! > tmp-response.txt
+
+findstr /C:"\"success\":true" tmp-response.txt >nul
+if !errorlevel! == 0 (
+  echo SUCCESS: Branch !new_code! aktif!
+  ) else (
+  echo FAILED: Branch !new_code! tidak ditemukan!
+)
+
+del tmp-response.txt
+
 endlocal
 exit /b
 
@@ -54,7 +68,7 @@ set "new_code=%~5"
 if exist "%filepath%" (
   echo Updating: %filepath%
   powershell -Command "(Get-Content -Raw '%filepath%') -replace '%old_db%', '%new_db%' -replace '%old_code%', '%new_code%' | Set-Content '%filepath%'"
-) else (
+  ) else (
   echo File not found: %filepath%
 )
 endlocal
