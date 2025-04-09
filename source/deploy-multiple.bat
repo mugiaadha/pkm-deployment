@@ -35,13 +35,7 @@ echo Copying folder...
 xcopy "!old_name!" "../result/!new_name!" /E /I /H /Y >nul
 
 :: === FILE REPLACEMENT ===
-for %%f in (
-  "koneksi.php"
-  "ws\koneksi.php"
-  "api\config.php"
-  "wsv2\pasien.php"
-  "report\loadetiket.php"
-  ) do (
+for /f "usebackq delims=" %%f in ("file-list.txt") do (
   set "filepath=../result/!new_name!\clenic\%%~f"
   call :replacefile "!filepath!" "!old_db!" "!new_db!" "!old_code!" "!new_code!"
 )
@@ -60,7 +54,7 @@ set "new_code=%~5"
 if exist "%filepath%" (
   echo Updating: %filepath%
   powershell -Command "(Get-Content -Raw '%filepath%') -replace '%old_db%', '%new_db%' -replace '%old_code%', '%new_code%' | Set-Content '%filepath%'"
-  ) else (
+) else (
   echo File not found: %filepath%
 )
 endlocal
