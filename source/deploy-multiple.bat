@@ -60,7 +60,7 @@ set "new_code=%~5"
 if exist "%filepath%" (
   echo Updating: %filepath%
   powershell -Command "(Get-Content -Raw '%filepath%') -replace '%old_db%', '%new_db%' -replace '%old_code%', '%new_code%' | Set-Content '%filepath%'"
-) else (
+  ) else (
   echo File not found: %filepath%
 )
 endlocal
