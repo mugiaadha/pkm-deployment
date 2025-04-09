@@ -32,11 +32,11 @@ echo === DEPLOYING: !new_name! from !old_name! ===
 
 :: === COPY FOLDER ===
 echo Copying folder...
-xcopy "!old_name!" "../result/!new_name!" /E /I /H /Y >nul
+xcopy "!old_name!" "./result/!new_name!" /E /I /H /Y >nul
 
 :: === FILE REPLACEMENT ===
 for /f "usebackq delims=" %%f in ("file-list.txt") do (
-  set "filepath=../result/!new_name!\clenic\%%~f"
+  set "filepath=./result/!new_name!\clenic\%%~f"
   call :replacefile "!filepath!" "!old_db!" "!new_db!" "!old_code!" "!new_code!"
 )
 
