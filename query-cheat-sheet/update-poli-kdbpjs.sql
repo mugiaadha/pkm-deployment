@@ -30,7 +30,6 @@ WHERE (
     nampoli LIKE '%GIZI%' OR
     nampoli LIKE '%JIWA%' OR
     nampoli LIKE '%KUSTA%' OR
-    nampoli LIKE '%TB%' OR
     nampoli LIKE '%PARU%' OR
     nampoli LIKE '%Home-Visit%' OR
     nampoli LIKE '%Konseling%' OR
