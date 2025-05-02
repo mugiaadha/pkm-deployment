@@ -11,7 +11,6 @@ SET kdpolibpjs = CASE
     WHEN nampoli LIKE '%GIZI%' THEN '029'
     WHEN nampoli LIKE '%JIWA%' THEN '031'
     WHEN nampoli LIKE '%KUSTA%' THEN '032'
-    WHEN nampoli LIKE '%TB%' THEN '033'
     WHEN nampoli LIKE '%PARU%' THEN '033'
     WHEN nampoli LIKE '%Home-Visit%' THEN '020'
     WHEN nampoli LIKE '%Konseling%' THEN '021'

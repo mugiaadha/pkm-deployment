@@ -54,23 +54,6 @@ if !errorlevel! == 0 (
 
 del tmp-response.txt
 
-:: === CURL POST LOGIN ===
-echo.
-echo Testing login to https://bandaraya.clenicapp.com/clenic/api/login...
-curl -s -X POST ^
--H "Content-Type: application/json" ^
--d "{\"username\":\"pkmbandaraya\",\"password\":\"demo\",\"kdcabang\":\"182\"}" ^
-https://bandaraya.clenicapp.com/clenic/api/login > tmp-login.txt
-
-findstr /C:"token" tmp-login.txt >nul
-if !errorlevel! == 0 (
-  echo Login success!
-  ) else (
-  echo Login failed or no token returned!
-)
-
-del tmp-login.txt
-
 endlocal
 exit /b
 
