@@ -1,0 +1,30 @@
+
+
+-- query data pasien 
+SELECT * FROM pasien;
+
+-- query kunjungan;
+SELECT  
+    a.pasien,
+    b.*,  
+    c.namdokter, 
+    d.nampoli, 
+    f.kddiagnosa, 
+    f.diagnosa
+FROM pasien a
+JOIN ermcppt b ON a.norm = b.norm
+JOIN dokter c ON b.kddokter = c.kddokter
+JOIN poliklinik d ON b.kdpoli = d.kdpoli
+JOIN (
+    SELECT *, ROW_NUMBER() OVER (PARTITION BY notrans ORDER BY no) AS rn
+    FROM ermcpptdiagnosa
+    WHERE status = 'diagnosa'
+) f ON b.notrans = f.notrans AND f.rn = 1
+ORDER BY b.tgl ASC;
+
+-- data dokter
+SELECT namdokter FROM dokter;
+
+-- data obat
+
+SELECT obat FROM obat;
