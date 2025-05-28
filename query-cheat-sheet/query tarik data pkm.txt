@@ -26,5 +26,4 @@ ORDER BY b.tgl ASC;
 SELECT namdokter FROM dokter;
 
 -- data obat
-
 SELECT obat FROM obat;
